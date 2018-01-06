@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="using:GTD"
+             x:Class="GTD.MasterPage" 
+			 Padding="0"
+			 Title="Test">
+	<!--<StackLayout Spacing="10" Padding="10">
+		<ListView x:Name="listView" ItemsSource="{Binding Data}">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Label Text="{Binding Title}" />
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>-->
+	<StackLayout Orientation="Vertical">
+		<StackLayout BackgroundColor="#e74c3c" HeightRequest="75">
+
+			<Label Text="Some Text title"
+                 FontSize="20"
+                 VerticalOptions="CenterAndExpand"
+                 TextColor="White"
+                 HorizontalOptions="Center"/>
+		</StackLayout>
+
+		<ListView x:Name="listView" ItemsSource="{Binding Data}" 
+				  RowHeight="40" SeparatorVisibility="None" BackgroundColor="#e8e8e8">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="10,10,0,10" Spacing="5">
+							<Image Source="{Binding IconSource}" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+							<Label Text="{Binding Title}" FontSize="Small" VerticalOptions="Center" TextColor="Black"/>
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>
+</ContentPage>
