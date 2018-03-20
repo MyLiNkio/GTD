@@ -25,7 +25,7 @@ namespace GTD.Droid
 			base.OnCreate(bundle);
 
 			var dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "productsDb.db");
-			//InitDb(dbPath);
+			InitDb(dbPath);
 
 			Global.RepositoryHolder = new RepositoryHolder(dbPath);
 
@@ -44,34 +44,37 @@ namespace GTD.Droid
 			var stackRepo = new StacksRepository(dbPath);
 			var stacks = new List<Stack>
 			{
-				new Stack { Type = PeriodType.None, StartDate = DateTime.Today },
-				new Stack { Type = PeriodType.Daily, StartDate = DateTime.Today },
-				new Stack { Type = PeriodType.Weekly, StartDate = DateTime.Today },
-				new Stack { Type = PeriodType.Monthly, StartDate = DateTime.Today },
-				new Stack { Type = PeriodType.Yearly, StartDate = DateTime.Today },
+				new Stack { Type = StackType.Day, StartDate = DateTime.Today },
+				new Stack { Type = StackType.None, StartDate = DateTime.Today },
+				new Stack { Type = StackType.Week, StartDate = DateTime.Today },
+				new Stack { Type = StackType.Month, StartDate = DateTime.Today },
 			};
 
 			foreach (var record in stacks)
 			{
 				stackRepo.AddAsync(record);
 			}
-			var resStacks = stackRepo.GetAsync().Result;
-
 
 			var rRepo = new RecordsRepository(dbPath);
 			var records = new List<Record>()
 			{
-				new Record{Name = "Name 1", Description="Some description here", Status=Status.Active, StackId = stacks[0].Id},
-				new Record{Name = "Name 2", Description="Some description here", Status=Status.Deleted, StackId = stacks[1].Id},
-				new Record{Name = "Name 3", Description="Some description here", Status=Status.Modified, StackId = stacks[0].Id},
-				new Record{Name = "Name 4", Description="Some description here", Status=Status.Active, StackId = stacks[0].Id},
+				new Record{ IsFinished = true, Name = "Meeting at Akadem", Description = "Meeting starts at 10:00 on the building", StackId = stacks[0].Id},
+				new Record{ Name = "Buy bread at the shop", Description="Go to the Silpo after work and buy some bread", StackId = stacks[0].Id},
+				new Record{ Name = "Visit a doctor", Description="Some description here", Status=Status.Active, StackId = stacks[0].Id},
+				new Record{ Name = "Bring my laptop to the work", Description="Some description here", Status=Status.Deleted, StackId = stacks[0].Id},
+				new Record{ Name = "Create a report", Description="Some description here", Status=Status.Modified, StackId = stacks[0].Id},
+				new Record{ Name = "Fix all bugs", Description="Some description here", Status=Status.Active, StackId = stacks[0].Id},
+				new Record{ Name = "Meeting at Akadem", Description = "Meeting starts at 10:00 on the building", StackId = stacks[0].Id},
+				new Record{ Name = "Buy bread at the shop", Description="Go to the Silpo after work and buy some bread", StackId = stacks[0].Id},
+				new Record{ Name = "Visit a doctor", Description="Some description here", Status=Status.Active, StackId = stacks[0].Id},
+				new Record{ Name = "Bring my laptop to the work", Description="Some description here", Status=Status.Deleted, StackId = stacks[0].Id},
+				new Record{ Name = "Create a report", Description="Some description here", Status=Status.Modified, StackId = stacks[0].Id},
+				new Record{ Name = "Fix all bugs", Description="Some description here", Status=Status.Active, StackId = stacks[0].Id},
 			};
 			foreach (var record in records)
 			{
 				rRepo.AddAsync(record);
 			}
-
-			var res = rRepo.GetAsync().Result;
 		}
 	}
 }

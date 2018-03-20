@@ -12,10 +12,10 @@ namespace GTD
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PlanningPage : ContentPage
 	{
-		public PlanningPage (PeriodType stackType)
+		public PlanningPage (StackType stackType)
 		{
 			BindingContext = new StacksViewModel(stackType); 
-			//SetBinding(Page.TitleProperty, new Binding("Title"));
+			SetBinding(Page.TitleProperty, new Binding("Title"));
 			InitializeComponent();
 		}
 	}

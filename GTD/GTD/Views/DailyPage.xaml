@@ -2,20 +2,70 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GTD.DailyPage">
-	<StackLayout>
-		<ListView ItemsSource="{Binding Records}"/>
-		<!--<ListView.ItemTemplate>
-			<DataTemplate>
-				<ViewCell>
-					<Grid Padding="5,10">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="30"/>
-							<ColumnDefinition Width="*" />
-						</Grid.ColumnDefinitions>
-						<Label Grid.Column="1" Text="{Binding Title}" />
-					</Grid>
-				</ViewCell>
-			</DataTemplate>
-		</ListView.ItemTemplate>-->
+	<StackLayout Orientation="Vertical">
+		<Label FontSize="Default" Text="This is a Default size"></Label>
+		<Label FontSize="Large" Text="This is a Large size"></Label>
+		<Label FontSize="Medium" Text="This is a Medium size"></Label>
+		<Label FontSize="Small" Text="This is a Small size"></Label>
+		<Label FontSize="Micro" Text="This is a Micro size"></Label>
+		
+		<ListView x:Name="listView" ItemsSource="{Binding Records}" HasUnevenRows="True">
+			<!--<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="20"></RowDefinition>
+									<RowDefinition Height="40"></RowDefinition>
+									<RowDefinition Height="20"></RowDefinition>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="1*"></ColumnDefinition>
+								</Grid.ColumnDefinitions>
+
+								<Label Grid.Column="0" Grid.Row="0" Text="{Binding Name}" HorizontalOptions="StartAndExpand"></Label>
+								<StackLayout Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+									<Button Text="Start" FontSize="Micro" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="GreenYellow"></Button>
+									<Button Text="Postpone" FontSize="Micro" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Coral"></Button>
+								</StackLayout>
+							</Grid>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>-->
+		</ListView>
 	</StackLayout>
 </ContentPage>
+
+
+<!--<Button Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" 
+										Image="checkbox_unchecked.png" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Btn_Clicked">
+									<Button.Triggers>
+										<DataTrigger TargetType="Button"
+												 Binding="{Binding IsFinished}"
+												 Value="True">
+											<Setter Property="Image" Value="checkbox_checked.png" />
+										</DataTrigger>
+									</Button.Triggers>
+								</Button>-->
+<!--<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" 
+											Source="checkbox_unchecked.png" HorizontalOptions="Center" IsVisible="True"/>
+								<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" 
+											Source="checkbox_checked.png" HorizontalOptions="Center" IsVisible="False"/>-->
+<!--<Switch Grid.Column="0" Grid.Row="0" IsToggled="True"></Switch>
+								<Switch Grid.Column="0" Grid.Row="1" IsToggled="False"></Switch>
+								<Label Grid.Column="1" Grid.Row="0" 
+											Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />-->
+<!--<Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+											Text="{Binding StackId}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />-->
+<!--<Button Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" 
+										Image="play.png" Text="test" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Btn2_Clicked" 
+										BorderRadius="5" BorderWidth="0" BorderColor="Black"
+										BackgroundColor="Transparent"/>
+
+								<Button Grid.Column="1" Grid.Row="1" 
+										Image="play.png" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Btn2_Clicked" 
+										BorderRadius="5" BorderWidth="0" BorderColor="Black"
+										HeightRequest="15" WidthRequest="20" Margin="0" Style=""
+										BackgroundColor="Red"/>-->

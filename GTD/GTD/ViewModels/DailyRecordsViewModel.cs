@@ -17,12 +17,20 @@ namespace GTD
 		private readonly IRepository<Record> _recordsRep = Global.RepositoryHolder.GetRepository<Record>();
 		private readonly IRepository<Stack> _stacksRep = Global.RepositoryHolder.GetRepository<Stack>();
 		private IEnumerable<Record> _records;
+		private DateTime _date = DateTime.Today;
+		private int _periodsOffset = 0;
+
+		public int PeriodsOffset {
+			get { return _periodsOffset; }
+		}
 
 		public string Title
 		{
 			get
 			{
-				return $"{PeriodType.Daily.ToString()} ({DateTime.Today.ToString("dd MMM yyyy")})";
+				if (_date == DateTime.Today)
+					return "Today";
+				return $"{_date.ToString("dd MMM yyyy")}";
 			}
 		}
 
@@ -58,9 +66,12 @@ namespace GTD
 		//	}
 		//}
 
-		public DailyRecordsViewModel()
+		public DailyRecordsViewModel(int periodsOffset)
 		{
-			var stacks = _stacksRep.QueryAsync(x => x.Type == PeriodType.Daily && x.StartDate == DateTime.Today).Result;
+			_periodsOffset = periodsOffset;
+			_date  = _date.AddDays(periodsOffset);
+
+			var stacks = _stacksRep.QueryAsync(x => x.Type == StackType.Day && x.StartDate == _date).Result;
 			if (stacks != null && stacks.Any(x=>x != null))
 			{
 				var stack = stacks.First();

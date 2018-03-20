@@ -23,6 +23,8 @@ namespace GTD.Models
 
 		public Progress Progress { get; set; }
 
+		public bool IsFinished { get; set; }
+
 		public Priority Priority { get; set; }
 
 		public DateTime DueTo { get; set; }

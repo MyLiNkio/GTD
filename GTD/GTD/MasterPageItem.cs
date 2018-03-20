@@ -15,6 +15,8 @@ namespace GTD
 
 		public Type TargetType { get; set; }
 
-		public PeriodType PeriodType {get;set;}
+		public StackType PeriodType {get;set;}
+
 	}
+
 }

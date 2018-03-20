@@ -16,13 +16,13 @@ namespace GTD
 	{
 		private readonly IRepository<Stack> _stacksRep = Global.RepositoryHolder.GetRepository<Stack>();
 		private IEnumerable<Record> _records;
-		private PeriodType _periodType;
+		private StackType _periodType;
 
 		public string Title
 		{
 			get
 			{
-				if (_periodType == PeriodType.None)
+				if (_periodType == StackType.None)
 					return "Inbox";
 				return _periodType.ToString();
 			}
@@ -60,7 +60,7 @@ namespace GTD
 		//	}
 		//}
 
-		public StacksViewModel(PeriodType periodType)
+		public StacksViewModel(StackType periodType)
 		{
 			_periodType = periodType;
 			var stacks = _stacksRep.QueryAsync(x => x.Type == _periodType).Result;

@@ -5,17 +5,6 @@
              x:Class="GTD.MasterPage" 
 			 Padding="0"
 			 Title="Test">
-	<!--<StackLayout Spacing="10" Padding="10">
-		<ListView x:Name="listView" ItemsSource="{Binding Data}">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<ViewCell>
-						<Label Text="{Binding Title}" />
-					</ViewCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-	</StackLayout>-->
 	<StackLayout Orientation="Vertical">
 		<StackLayout BackgroundColor="#e74c3c" HeightRequest="75">
 
@@ -31,7 +20,7 @@
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
-						<StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="10,10,0,10" Spacing="5">
+						<StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="10,10,0,10" Spacing="0">
 							<Image Source="{Binding IconSource}" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
 							<Label Text="{Binding Title}" FontSize="Small" VerticalOptions="Center" TextColor="Black"/>
 						</StackLayout>

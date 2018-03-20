@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,22 @@ namespace GTD
 		public MainPage()
 		{
 			InitializeComponent();
+			//IsGestureEnabled = false;
+
+			//if (Device.RuntimePlatform != Device.iOS)
+			//{
+			//	TapGestureRecognizer tap = new TapGestureRecognizer();
+			//	//tap.Tapped += (sender, args) => {
+			//	//	if (!IsGestureEnabled)
+			//	//		IsPresented = true;
+			//	//	if (IsGestureEnabled)
+			//	//		IsPresented = true;
+			//	//};
+			//	tap.Tapped += OnItemSelected;
+				
+			//	masterPage.Content.BackgroundColor = Color.Transparent;
+			//	masterPage.Content.GestureRecognizers.Add(tap);
+			//}
 
 			masterPage.ListView.ItemSelected += OnItemSelected;
 
@@ -26,10 +43,13 @@ namespace GTD
 			var item = e.SelectedItem as MasterPageItem;
 			if (item != null)
 			{
-				Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType, item.PeriodType));
+				//var content = new StacksCarousel(Models.StackType.Day, 1);
+				var content = (Page)Activator.CreateInstance(item.TargetType, item.PeriodType);
+				Detail = new NavigationPage(content);
+
 				masterPage.ListView.SelectedItem = null;
 				IsPresented = false;
 			}
-		}
+		}		
 	}
 }

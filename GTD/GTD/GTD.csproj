@@ -40,11 +40,13 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Global.cs" />
+    <Compile Include="Interfaces\IStackPage.cs" />
     <Compile Include="MasterPageItem.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Stack.cs" />
+    <Compile Include="ViewModels\StacksCarouselViewModel.cs" />
     <Compile Include="ViewModels\StacksViewModel.cs" />
     <Compile Include="Views\DailyPage.xaml.cs">
       <DependentUpon>DailyPage.xaml</DependentUpon>
@@ -66,6 +68,9 @@
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Views\StacksCarousel.xaml.cs">
+      <DependentUpon>StacksCarousel.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
@@ -111,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\PlanningPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\StacksCarousel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

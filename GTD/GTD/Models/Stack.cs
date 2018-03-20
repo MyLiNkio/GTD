@@ -12,7 +12,7 @@ namespace GTD.Models
 
 		public int Id { get; set; }
 
-		public PeriodType Type { get; set; }
+		public StackType Type { get; set; }
 
 		public int Periods {
 			get { return _periods; }
@@ -29,12 +29,11 @@ namespace GTD.Models
 		public ICollection<Record> Records { get; set; }
 	}
 
-	public enum PeriodType
+	public enum StackType
 	{
 		None,
-		Daily,
-		Weekly,
-		Monthly,
-		Yearly,
+		Day,
+		Week,
+		Month,
 	}
 }

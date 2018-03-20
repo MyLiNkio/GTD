@@ -15,43 +15,57 @@ namespace GTD
 	public partial class MasterPage : ContentPage
 	{
 		public ListView ListView { get { return listView; } }
+
 		public List<MasterPageItem> Data { get; set; }
+
 		public string Title = "Custom title";
 
 		public MasterPage ()
 		{
-			var stackRepo = Global.RepositoryHolder.GetRepository<Stack>();
-			if (stackRepo != null)
-			{
-				var stacks = stackRepo.GetAsync().Result;
-				Data = new List<MasterPageItem>();
-				Data.Add(new MasterPageItem { Title = "Inbox", TargetType = typeof(PlanningPage), PeriodType = PeriodType.None});
+			Data = new List<MasterPageItem>();
+			Data.Add(new MasterPageItem { Title = "Inbox", TargetType = typeof(PlanningPage), PeriodType = StackType.None});
+			Data.Add(new MasterPageItem { Title = "Daily stack", TargetType = typeof(StacksCarousel), PeriodType = StackType.Day });
+			Data.Add(new MasterPageItem { Title = "Weekly stack", TargetType = typeof(PlanningPage), PeriodType = StackType.Week });
+			Data.Add(new MasterPageItem { Title = "Monthly stack", TargetType = typeof(PlanningPage), PeriodType = StackType.Month });
+			Data.Add(new MasterPageItem { Title = "Planning", TargetType = typeof(PlanningPage), PeriodType = StackType.Month });
 
-				var dailyStack = stacks.FirstOrDefault(x => x.Type == PeriodType.Daily && x.StartDate == DateTime.Today);
-				if (dailyStack != null)
-					Data.Add(new MasterPageItem { Title = dailyStack.Type.ToString(), TargetType = typeof(DailyPage), PeriodType = PeriodType.Daily });
+			//var dailyStack = stacks.FirstOrDefault(x => x.Type == PeriodType.Daily && x.StartDate == DateTime.Today);
+			//var weeklyStack = stacks.FirstOrDefault(x => x.Type == PeriodType.Weekly && x.StartDate.Year == DateTime.Today.Year && CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(x.StartDate, CalendarWeekRule.FirstDay, Global.FirsDayOfWeek) == CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstDay, Global.FirsDayOfWeek));
+			//var monthlyStack = stacks.FirstOrDefault(x => x.Type == PeriodType.Monthly && x.StartDate.Month == DateTime.Today.Month && x.StartDate.Year == DateTime.Today.Year);
 
-				var weeklyStack = stacks.FirstOrDefault(x => x.Type == PeriodType.Weekly && x.StartDate.Year == DateTime.Today.Year && CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(x.StartDate, CalendarWeekRule.FirstDay, Global.FirsDayOfWeek) == CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstDay, Global.FirsDayOfWeek));
-				if (weeklyStack != null)
-					Data.Add(new MasterPageItem { Title = weeklyStack.Type.ToString(), TargetType = typeof(PlanningPage), PeriodType = PeriodType.Weekly });
-
-				var monthlyStack = stacks.FirstOrDefault(x => x.Type == PeriodType.Monthly && x.StartDate.Month == DateTime.Today.Month && x.StartDate.Year == DateTime.Today.Year);
-				if (monthlyStack != null)
-					Data.Add(new MasterPageItem { Title = monthlyStack.Type.ToString(), TargetType = typeof(PlanningPage), PeriodType = PeriodType.Monthly });
-
-				var yearlyStack = stacks.FirstOrDefault(x => x.Type == PeriodType.Yearly && x.StartDate.Year == DateTime.Today.Year);
-				if (yearlyStack!= null)
-					Data.Add(new MasterPageItem { Title = yearlyStack.Type.ToString(), TargetType = typeof(PlanningPage), PeriodType = PeriodType.Yearly });
-
-				Data.Add(new MasterPageItem { Title = yearlyStack.Type.ToString(), TargetType = typeof(PlanningPage), PeriodType = PeriodType.Yearly });
-
-				Data.Add(new MasterPageItem { Title = yearlyStack.Type.ToString(), TargetType = typeof(PlanningPage), PeriodType = PeriodType.Yearly });
-
-				Data.Add(new MasterPageItem { Title = yearlyStack.Type.ToString(), TargetType = typeof(PlanningPage), PeriodType = PeriodType.Yearly });
-			}
 			BindingContext = this;
 			SetBinding(Page.TitleProperty, new Binding("Title"));
 			InitializeComponent ();
+
+			//<Image Source="{Binding IconSource}" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+			//<Label Text="{Binding Title}" FontSize="Small" VerticalOptions="Center" TextColor="Black"/>
+			//<Label Text="{Binding Test.Test}" FontSize="Small" VerticalOptions="Center" TextColor="Black"/>
+
+			//listView.ItemTemplate = new DataTemplate(()=> 
+			//{ 
+			//	var image = new Image();
+			//	image.SetBinding(Image.SourceProperty, "IconSource");
+
+			//	var labelTitle = new Label();
+			//	labelTitle.SetBinding(Label.TextProperty, "Title");
+
+			//	var labelTest = new Label();
+			//	labelTest.SetBinding(Label.TextProperty, "Test.Test");
+
+			//	var viewCellStack = new StackLayout
+			//	{
+			//		Padding = new Thickness(10, 10, 0, 10),
+			//		Spacing = 5,
+			//		Orientation = StackOrientation.Horizontal,
+			//		VerticalOptions = LayoutOptions.FillAndExpand,
+			//	};
+
+			//	viewCellStack.Children.Add(image);
+			//	viewCellStack.Children.Add(labelTitle);
+			//	viewCellStack.Children.Add(labelTest);
+
+			//	return new ViewCell{View = viewCellStack};
+			//});
 		}
 	}
 }
