@@ -14,8 +14,8 @@ namespace GTD
 		{
 			InitializeComponent();
 
-			//MainPage = new ProductsPage();
-			MainPage = new MasterPage();
+			//MainPage = new MainPage();
+			MainPage = new NavigationPage(new InboxPage());
 		}
 
 		protected override void OnStart()

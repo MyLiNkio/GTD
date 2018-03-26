@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.GTD" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="test.GTD" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="26" />
-	<application android:label="GTD.Android"></application>
+	<application android:label="GTD.Android" android:icon="@drawable/icon"></application>
 </manifest>
